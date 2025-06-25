@@ -1,4 +1,6 @@
 // This file defines the AI strategies for playing "The Game".
+//
+// Update: Extra moves with a ±1 difference (direct followers) are now always played, regardless of playExtraTendency. The random check only applies to other extra moves.
 
 import { GameState, Move, Strategy, Pile } from './types';
 import { getValidMoves } from './game';
@@ -74,12 +76,18 @@ export const ruleBasedStrategy = (
         if (validMoves.length === 0) break;
         // Find a move that is a direct follower, a 10-jump, or within maxAllowedJump
         let move: Move | undefined;
+        let isDirectFollower = false;
         for (const m of validMoves) {
             const pile = piles.find(p => p.id === m.pileId)!;
             const diff = m.card - pile.value;
             const absDiff = Math.abs(diff);
             // Always allow direct follower or 10-jump
-            if (absDiff === 1 || absDiff === 10) {
+            if (absDiff === 1) {
+                move = m;
+                isDirectFollower = true;
+                break;
+            }
+            if (absDiff === 10) {
                 move = m;
                 break;
             }
@@ -92,8 +100,9 @@ export const ruleBasedStrategy = (
                 break;
             }
         }
-        // Decide probabilistically whether to play extra
-        if (!move || Math.random() > playExtraTendency) break;
+        // Direct followers (±1) are always played; random check only for other moves
+        if (!move) break;
+        if (!isDirectFollower && Math.random() > playExtraTendency) break;
         moves.push(move);
         handCopy = handCopy.filter(c => c !== move.card);
         piles = piles.map(p => p.id === move.pileId ? { ...p, value: move.card } : p) as [Pile, Pile, Pile, Pile];
