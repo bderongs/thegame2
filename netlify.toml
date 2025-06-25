@@ -3,6 +3,3 @@
   base = "app"
   publish = ".next"
   command = "npm run build"
-
-[[plugins]]
-  package = "@netlify/next"
