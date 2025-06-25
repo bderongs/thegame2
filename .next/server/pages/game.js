@@ -1,4 +1,1228 @@
-(()=>{var e={};e.id=910,e.ids=[220,636,910],e.modules={671:(e,a)=>{"use strict";Object.defineProperty(a,"M",{enumerable:!0,get:function(){return function e(a,t){return t in a?a[t]:"then"in a&&"function"==typeof a.then?a.then(a=>e(a,t)):"function"==typeof a&&"default"===t?a:void 0}}})},6069:(e,a,t)=>{"use strict";t.r(a),t.d(a,{config:()=>O,default:()=>M,getServerSideProps:()=>E,getStaticPaths:()=>$,getStaticProps:()=>A,reportWebVitals:()=>I,routeModule:()=>_,unstable_getServerProps:()=>q,unstable_getServerSideProps:()=>R,unstable_getStaticParams:()=>J,unstable_getStaticPaths:()=>B,unstable_getStaticProps:()=>G});var l={};t.r(l),t.d(l,{default:()=>P,getServerSideProps:()=>C});var s=t(3865),r=t(9455),n=t(671),i=t(1569),d=t(7262),o=t(8732),u=t(2015),c={xmlns:"http://www.w3.org/2000/svg",width:24,height:24,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:2,strokeLinecap:"round",strokeLinejoin:"round"};let m=e=>e.replace(/([a-z0-9])([A-Z])/g,"$1-$2").toLowerCase(),p=(e,a)=>{let t=(0,u.forwardRef)(({color:t="currentColor",size:l=24,strokeWidth:s=2,absoluteStrokeWidth:r,className:n="",children:i,...d},o)=>(0,u.createElement)("svg",{ref:o,...c,width:l,height:l,stroke:t,strokeWidth:r?24*Number(s)/Number(l):s,className:["lucide",`lucide-${m(e)}`,n].join(" "),...d},[...a.map(([e,a])=>(0,u.createElement)(e,a)),...Array.isArray(i)?i:[i]]));return t.displayName=`${e}`,t},x=p("BarChart2",[["line",{x1:"18",x2:"18",y1:"20",y2:"10",key:"1xfpm4"}],["line",{x1:"12",x2:"12",y1:"20",y2:"4",key:"be30l9"}],["line",{x1:"6",x2:"6",y1:"20",y2:"14",key:"1r4le6"}]]),h=p("Users",[["path",{d:"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2",key:"1yyitq"}],["circle",{cx:"9",cy:"7",r:"4",key:"nufk8"}],["path",{d:"M22 21v-2a4 4 0 0 0-3-3.87",key:"kshegd"}],["path",{d:"M16 3.13a4 4 0 0 1 0 7.75",key:"1da9ce"}]]),f=p("Settings",[["path",{d:"M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z",key:"1qme2f"}],["circle",{cx:"12",cy:"12",r:"3",key:"1v7zrd"}]]),g=p("Eye",[["path",{d:"M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z",key:"rwhkz3"}],["circle",{cx:"12",cy:"12",r:"3",key:"1v7zrd"}]]),b=p("CircleCheck",[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["path",{d:"m9 12 2 2 4-4",key:"dzmm74"}]]),y=p("Play",[["polygon",{points:"6 3 20 12 6 21 6 3",key:"1oa8hb"}]]);function v(e){if(1===e)return 8;if(2===e)return 7;if(e>=3&&e<=5)return 6;throw Error("Invalid number of players. Must be between 1 and 5.")}function j(e){let a=[],t=e.hands[e.currentPlayer];if(!t)return[];for(let l of t)for(let t of e.piles)("ascending"===t.direction?l>t.value||l===t.value-10:l<t.value||l===t.value+10)&&a.push({card:l,pileId:t.id});return a}function N(e,a){let t=JSON.parse(JSON.stringify(e)),l=t.hands[t.currentPlayer];for(let e of a){let a=t.piles.find(a=>a.id===e.pileId);if(a){a.value=e.card;let t=l.indexOf(e.card);t>-1&&l.splice(t,1)}}return t.cardsPlayed+=a.length,t}let w=(e,a,t={})=>{let{playExtraTendency:l=.5,maxAllowedJump:s=99,pileHealthCaution:r=.5}=t,n=[...e.hands[a]];if(0===n.length)return[];let i=e.deck.length>0?2:1,d=[],o=[...e.piles.map(e=>({...e}))],u=[...n];function c(t,l){return j({...e,hands:[...e.hands.slice(0,a),t,...e.hands.slice(a+1)],piles:l,currentPlayer:a})}function m(e){return e.filter(e=>{let t=o.find(a=>a.id===e.pileId);return void 0===t.bookedBy||t.bookedBy===a})}for(let e=0;e<i;e++){let e=c(u,o),a=m(e);if(0===(e=a.length>0?a:e).length)break;let t=e.find(e=>{let a=o.find(a=>a.id===e.pileId);return 10===Math.abs(e.card-a.value)});if(!t){let a=1/0;for(let l of e){let e=o.find(e=>e.id===l.pileId),s=Math.abs(l.card-e.value);s<a&&(a=s,t=l)}}if(!t)break;d.push(t),u=u.filter(e=>e!==t.card),o=o.map(e=>e.id===t.pileId?{...e,value:t.card}:e)}for(;;){let e,a=c(u,o),t=m(a);if(0===(a=t.length>0?t:a).length)break;for(let t of a){let a=o.find(e=>e.id===t.pileId),l=Math.abs(t.card-a.value);if(1===l||10===l||l<=s&&(r<.5||("ascending"===a.direction?t.card<90:t.card>10))){e=t;break}}if(!e||Math.random()>l)break;d.push(e),u=u.filter(a=>a!==e.card),o=o.map(a=>a.id===e.pileId?{...a,value:e.card}:a)}return d};function k(e,a,t){let l=function(e=1){let a=function(){let e=Array.from({length:98},(e,a)=>a+2);for(let a=e.length-1;a>0;a--){let t=Math.floor(Math.random()*(a+1));[e[a],e[t]]=[e[t],e[a]]}return e}(),t=v(e),l=[];for(let s=0;s<e;s++){let e=a.splice(0,t);e.sort((e,a)=>e-a),l.push(e)}return{deck:a,piles:[{id:1,direction:"ascending",value:1},{id:2,direction:"ascending",value:1},{id:3,direction:"descending",value:100},{id:4,direction:"descending",value:100}],hands:l,currentPlayer:0,cardsPlayed:0}}(a);t?.(`--- Starting a new game with ${a} players ---
-`);let s=Array.isArray(e)?e:Array(a).fill(e);for(;;){let e=l.currentPlayer,a=s[e];t?.(`
---- Player ${e+1}'s Turn ---`),t?.(`Piles: ${JSON.stringify(l.piles.map(e=>e.value))}`),t?.(`Hand:  ${JSON.stringify(l.hands[e])}`);let r=l.deck.length>0?2:1,n=0,i=[],d={...l};for(;n<r;){let t=a(d,e);if(0===t.length)break;i.push(...t),d=N(d,t),n+=t.length}if(n<r){t?.(`Player ${e+1} cannot play the required ${r} cards. GAME OVER.`);break}l=N(l,i),i.length>0?(t?.(`Plays: ${JSON.stringify(i)}`),t?.(`Piles after play: ${JSON.stringify(l.piles.map(e=>e.value))}`)):t?.("Plays: No moves were made.");let o=[...l.hands[e]],u=(l=function(e){let a=JSON.parse(JSON.stringify(e)),t=v(a.hands.length),l=a.hands[a.currentPlayer],s=Math.min(t-l.length,a.deck.length),r=a.deck.splice(0,s);return l.push(...r),l.sort((e,a)=>e-a),a}(l)).hands[e].filter(e=>!o.includes(e));if(u.length>0&&(t?.(`Draws: ${JSON.stringify(u)}`),t?.(`New Hand: ${JSON.stringify(l.hands[e])}`)),"function"==typeof a.updateBooking){let s=a.updateBooking(l,e);if(s){let a=l.piles.find(e=>e.id===s.pileId);a&&("book"===s.action?(a.bookedBy=e,t?.(`Player ${e+1} books pile ${a.id}`)):"release"===s.action&&a.bookedBy===e&&(a.bookedBy=void 0,t?.(`Player ${e+1} releases pile ${a.id}`)))}}if(0===l.hands.reduce((e,a)=>e+a.length,0)&&0===l.deck.length){t?.("--- GAME WON: All cards have been played! ---");break}l=function(e){let a=JSON.parse(JSON.stringify(e));return a.currentPlayer=(a.currentPlayer+1)%a.hands.length,a}(l)}let r=98-l.cardsPlayed;return t?.(`
---- Game Finished ---`),t?.(`Cards left: ${r}`),r}function S(e,a,t){let l=0,s=0;for(let r=0;r<a;r++){let a=k(e,t);0===a&&s++,l+=a}return{numberOfGames:a,numberOfPlayers:t,wins:s,averageCardsLeft:l/a}}function P(){let[e,a]=(0,u.useState)(2),[t,l]=(0,u.useState)(.5),[s,r]=(0,u.useState)(99),[n,i]=(0,u.useState)(.5),[d,c]=(0,u.useState)("single"),[m,p]=(0,u.useState)(1e3),[v,j]=(0,u.useState)(50),[N,P]=(0,u.useState)(null),[C,M]=(0,u.useState)(!1),[A,$]=(0,u.useState)(0),[E,O]=(0,u.useState)([]),[I,G]=(0,u.useState)([0,.5,1]),[B,J]=(0,u.useState)([1,10,99]),[q,R]=(0,u.useState)([0,.5,1]),[_,L]=(0,u.useState)([0,1,2]),T={playExtraTendency:t,maxAllowedJump:s,pileHealthCaution:n,bookingFrequency:A},H=async()=>{if(M(!0),P(null),"single"===d){let a=[];k((e,a)=>w(e,a,T),e,e=>a.push(e)),P({mode:d,numPlayers:e,playExtraTendency:t,maxAllowedJump:s,pileHealthCaution:n,log:a})}else if("multi"===d){let a=S((e,a)=>w(e,a,T),m,e);P({mode:d,numPlayers:e,playExtraTendency:t,maxAllowedJump:s,pileHealthCaution:n,numGames:m,winRate:a.wins/a.numberOfGames,avgCardsLeft:a.averageCardsLeft})}else if("search"===d){let a=[];O([]),P({mode:d,results:function(e,a,t,l=100,s){let r=[];for(let a of e.playExtraTendency)for(let t of e.maxAllowedJump)for(let l of e.pileHealthCaution)for(let s of e.bookingFrequency)r.push({playExtraTendency:a,maxAllowedJump:t,pileHealthCaution:l,bookingFrequency:s});let n=r.slice(0,l),i=[],d=0;for(let e of n){d++,s?.(`Testing combo ${d}/${n.length}: ${JSON.stringify(e)}`);let l=S((a,t)=>w(a,t,e),a,t);i.push({...e,winRate:l.wins/l.numberOfGames,avgCardsLeft:l.averageCardsLeft})}return i.sort((e,a)=>a.winRate-e.winRate||e.avgCardsLeft-a.avgCardsLeft),i}({playExtraTendency:I,maxAllowedJump:B,pileHealthCaution:q,bookingFrequency:_},m,e,v,e=>{a.push(e),O([...a])})})}M(!1)};return(0,o.jsx)("div",{className:"min-h-screen bg-gray-50 py-8 px-4 flex flex-col items-center",children:(0,o.jsxs)("div",{className:"w-full max-w-2xl bg-white rounded-xl shadow-lg p-8",children:[(0,o.jsxs)("h1",{className:"text-3xl font-bold mb-6 flex items-center gap-2",children:[(0,o.jsx)(x,{className:"w-8 h-8 text-blue-500"}),"The Game — Simulation Lab"]}),(0,o.jsxs)("form",{className:"space-y-6",onSubmit:e=>{e.preventDefault(),H()},children:[(0,o.jsxs)("div",{className:"flex flex-col gap-2",children:[(0,o.jsxs)("label",{className:"font-semibold flex items-center gap-2",children:[(0,o.jsx)(h,{className:"w-4 h-4"})," Number of players"]}),(0,o.jsx)("input",{type:"number",min:1,max:5,value:e,onChange:e=>a(Number(e.target.value)),className:"input input-bordered w-full max-w-xs"})]}),(0,o.jsxs)("div",{className:"flex flex-col gap-2",children:[(0,o.jsxs)("label",{className:"font-semibold flex items-center gap-2",children:[(0,o.jsx)(f,{className:"w-4 h-4"})," Tendency to play extra cards"]}),(0,o.jsx)("input",{type:"range",min:0,max:1,step:.01,value:t,onChange:e=>l(Number(e.target.value))}),(0,o.jsx)("span",{className:"text-xs text-gray-500",children:t}),(0,o.jsx)("span",{className:"text-xs text-gray-400",children:"0 = never play extra cards, 1 = always play extra cards if allowed. Controls how likely the player is to play more than the minimum required cards."})]}),(0,o.jsxs)("div",{className:"flex flex-col gap-2",children:[(0,o.jsxs)("label",{className:"font-semibold flex items-center gap-2",children:[(0,o.jsx)(f,{className:"w-4 h-4"})," Max allowed jump for extra cards"]}),(0,o.jsx)("input",{type:"range",min:1,max:99,step:1,value:s,onChange:e=>r(Number(e.target.value))}),(0,o.jsx)("span",{className:"text-xs text-gray-500",children:s}),(0,o.jsx)("span",{className:"text-xs text-gray-400",children:"1 = only direct followers/10-jumps, 99 = allow any jump. Controls how big a jump you're willing to make for extra cards (riskiness)."})]}),(0,o.jsxs)("div",{className:"flex flex-col gap-2",children:[(0,o.jsxs)("label",{className:"font-semibold flex items-center gap-2",children:[(0,o.jsx)(f,{className:"w-4 h-4"})," Pile health caution"]}),(0,o.jsx)("input",{type:"range",min:0,max:1,step:.01,value:n,onChange:e=>i(Number(e.target.value))}),(0,o.jsx)("span",{className:"text-xs text-gray-500",children:n}),(0,o.jsx)("span",{className:"text-xs text-gray-400",children:'0 = don\'t care about pile health, 1 = never "waste" a pile. Controls how cautious the player is about leaving piles in a good state for the future.'})]}),(0,o.jsxs)("div",{className:"flex flex-col gap-2",children:[(0,o.jsxs)("label",{className:"font-semibold flex items-center gap-2",children:[(0,o.jsx)(f,{className:"w-4 h-4"})," Pile booking frequency"]}),(0,o.jsxs)("select",{value:A,onChange:e=>$(Number(e.target.value)),className:"input input-bordered w-full max-w-xs",children:[(0,o.jsx)("option",{value:0,children:"Never book a pile"}),(0,o.jsx)("option",{value:1,children:"Book if a 10-jump is available"}),(0,o.jsx)("option",{value:2,children:"Book if a 10-jump or \xb11 is available"})]}),(0,o.jsx)("span",{className:"text-xs text-gray-400",children:'Controls how often the player will "book" a pile to signal intent to other players.'})]}),(0,o.jsxs)("div",{className:"flex flex-col gap-2",children:[(0,o.jsxs)("label",{className:"font-semibold flex items-center gap-2",children:[(0,o.jsx)(g,{className:"w-4 h-4"})," Simulation mode"]}),(0,o.jsxs)("div",{className:"flex gap-4",children:[(0,o.jsxs)("button",{type:"button",className:`flex items-center gap-2 px-4 py-2 rounded-lg border transition-all ${"single"===d?"bg-blue-100 border-blue-500 text-blue-700 shadow":"bg-white border-gray-300 text-gray-700"} hover:border-blue-400`,onClick:()=>c("single"),children:["single"===d&&(0,o.jsx)(b,{className:"w-4 h-4 text-blue-500"}),"Single Game (Verbose)"]}),(0,o.jsxs)("button",{type:"button",className:`flex items-center gap-2 px-4 py-2 rounded-lg border transition-all ${"multi"===d?"bg-blue-100 border-blue-500 text-blue-700 shadow":"bg-white border-gray-300 text-gray-700"} hover:border-blue-400`,onClick:()=>c("multi"),children:["multi"===d&&(0,o.jsx)(b,{className:"w-4 h-4 text-blue-500"}),"Multiple Simulations"]}),(0,o.jsxs)("button",{type:"button",className:`flex items-center gap-2 px-4 py-2 rounded-lg border transition-all ${"search"===d?"bg-blue-100 border-blue-500 text-blue-700 shadow":"bg-white border-gray-300 text-gray-700"} hover:border-blue-400`,onClick:()=>c("search"),children:["search"===d&&(0,o.jsx)(b,{className:"w-4 h-4 text-blue-500"}),"Parameter Search (Find Optimal)"]})]}),"multi"===d&&(0,o.jsxs)("div",{className:"flex flex-col gap-2 mt-2",children:[(0,o.jsx)("label",{className:"text-sm",children:"Number of games"}),(0,o.jsx)("input",{type:"number",min:1,max:1e4,value:m,onChange:e=>p(Number(e.target.value)),className:"input input-bordered w-full max-w-xs"})]}),"search"===d&&(0,o.jsxs)("div",{className:"flex flex-col gap-2 mt-2",children:[(0,o.jsx)("label",{className:"text-sm",children:"Number of games per combo"}),(0,o.jsx)("input",{type:"number",min:1,max:1e4,value:m,onChange:e=>p(Number(e.target.value)),className:"input input-bordered w-full max-w-xs"}),(0,o.jsx)("label",{className:"text-sm",children:"Max parameter combinations (iterations)"}),(0,o.jsx)("input",{type:"number",min:1,max:500,value:v,onChange:e=>j(Number(e.target.value)),className:"input input-bordered w-full max-w-xs"}),(0,o.jsx)("label",{className:"text-sm",children:"playExtraTendency values (comma separated)"}),(0,o.jsx)("input",{type:"text",value:I.join(","),onChange:e=>G(e.target.value.split(",").map(Number).filter(e=>!isNaN(e))),className:"input input-bordered w-full max-w-xs"}),(0,o.jsx)("label",{className:"text-sm",children:"maxAllowedJump values (comma separated)"}),(0,o.jsx)("input",{type:"text",value:B.join(","),onChange:e=>J(e.target.value.split(",").map(Number).filter(e=>!isNaN(e))),className:"input input-bordered w-full max-w-xs"}),(0,o.jsx)("label",{className:"text-sm",children:"pileHealthCaution values (comma separated)"}),(0,o.jsx)("input",{type:"text",value:q.join(","),onChange:e=>R(e.target.value.split(",").map(Number).filter(e=>!isNaN(e))),className:"input input-bordered w-full max-w-xs"}),(0,o.jsx)("label",{className:"text-sm",children:"bookingFrequency values (comma separated)"}),(0,o.jsx)("input",{type:"text",value:_.join(","),onChange:e=>L(e.target.value.split(",").map(Number).filter(e=>!isNaN(e))),className:"input input-bordered w-full max-w-xs"})]})]}),(0,o.jsxs)("button",{type:"submit",className:"btn btn-primary w-full flex items-center justify-center gap-2",disabled:C,children:[(0,o.jsx)(y,{className:"w-5 h-5"})," ",C?"Running...":"Run Simulation"]})]}),N&&(0,o.jsx)("div",{className:"mt-8",children:"single"===N.mode?(0,o.jsxs)("div",{className:"bg-gray-100 rounded-lg p-4 max-h-96 overflow-y-auto",children:[(0,o.jsx)("h2",{className:"font-bold mb-2",children:"Game Log"}),(0,o.jsx)("pre",{className:"text-xs whitespace-pre-wrap",children:N.log.join("\n")})]}):"multi"===N.mode?(0,o.jsxs)("div",{className:"bg-gray-100 rounded-lg p-4",children:[(0,o.jsx)("h2",{className:"font-bold mb-2",children:"Simulation Results"}),(0,o.jsxs)("div",{className:"flex flex-col gap-1 text-sm",children:[(0,o.jsxs)("span",{children:["Games played: ",N.numGames]}),(0,o.jsxs)("span",{children:["Players: ",N.numPlayers]}),(0,o.jsxs)("span",{children:["Win rate: ",(100*N.winRate).toFixed(2),"%"]}),(0,o.jsxs)("span",{children:["Average cards left: ",N.avgCardsLeft]}),(0,o.jsxs)("span",{children:["Booking frequency: ",0===A?"Never":1===A?"10-jump only":"10-jump or \xb11"]})]})]}):(0,o.jsxs)("div",{className:"bg-gray-100 rounded-lg p-4",children:[(0,o.jsx)("h2",{className:"font-bold mb-2",children:"Parameter Search Results"}),(0,o.jsx)("div",{className:"max-h-64 overflow-y-auto mb-2",children:(0,o.jsxs)("table",{className:"table-auto w-full text-xs",children:[(0,o.jsx)("thead",{children:(0,o.jsxs)("tr",{children:[(0,o.jsx)("th",{children:"playExtraTendency"}),(0,o.jsx)("th",{children:"maxAllowedJump"}),(0,o.jsx)("th",{children:"pileHealthCaution"}),(0,o.jsx)("th",{children:"bookingFrequency"}),(0,o.jsx)("th",{children:"Win Rate"}),(0,o.jsx)("th",{children:"Avg Cards Left"})]})}),(0,o.jsx)("tbody",{children:N.results.slice(0,20).map((e,a)=>(0,o.jsxs)("tr",{className:0===a?"font-bold bg-blue-50":"",children:[(0,o.jsx)("td",{children:e.playExtraTendency}),(0,o.jsx)("td",{children:e.maxAllowedJump}),(0,o.jsx)("td",{children:e.pileHealthCaution}),(0,o.jsx)("td",{children:e.bookingFrequency}),(0,o.jsxs)("td",{children:[(100*e.winRate).toFixed(2),"%"]}),(0,o.jsx)("td",{children:e.avgCardsLeft})]},a))})]})}),(0,o.jsxs)("div",{className:"bg-gray-200 rounded p-2 max-h-32 overflow-y-auto text-xs",children:[(0,o.jsx)("div",{children:"Progress log:"}),(0,o.jsx)("pre",{children:E.join("\n")})]})]})})]})})}w.updateBooking=function(e,a,t={}){let{bookingFrequency:l=0}=t;if(0===l)return null;e.hands[a];let s=j({...e,currentPlayer:a}),r=a=>e.piles.find(e=>e.id===a.pileId);if(l>=1){let e=s.find(e=>{let t=r(e);return 10===Math.abs(e.card-t.value)&&(void 0===t.bookedBy||t.bookedBy===a)});if(e)return{pileId:e.pileId,action:"book"}}if(l>=2){let e=s.find(e=>{let t=r(e);return 1===Math.abs(e.card-t.value)&&(void 0===t.bookedBy||t.bookedBy===a)});if(e)return{pileId:e.pileId,action:"book"}}let n=e.piles.find(e=>e.bookedBy===a);return n?{pileId:n.id,action:"release"}:null};let C=async()=>({props:{}}),M=(0,n.M)(l,"default"),A=(0,n.M)(l,"getStaticProps"),$=(0,n.M)(l,"getStaticPaths"),E=(0,n.M)(l,"getServerSideProps"),O=(0,n.M)(l,"config"),I=(0,n.M)(l,"reportWebVitals"),G=(0,n.M)(l,"unstable_getStaticProps"),B=(0,n.M)(l,"unstable_getStaticPaths"),J=(0,n.M)(l,"unstable_getStaticParams"),q=(0,n.M)(l,"unstable_getServerProps"),R=(0,n.M)(l,"unstable_getServerSideProps"),_=new s.PagesRouteModule({definition:{kind:r.A.PAGES,page:"/game",pathname:"/game",bundlePath:"",filename:""},components:{App:d.default,Document:i.default},userland:l})},7262:(e,a,t)=>{"use strict";t.r(a),t.d(a,{default:()=>s});var l=t(8732);function s({Component:e,pageProps:a}){return(0,l.jsx)(e,{...a})}t(2880)},1569:(e,a,t)=>{"use strict";t.r(a),t.d(a,{default:()=>r});var l=t(8732),s=t(883);function r(){return(0,l.jsxs)(s.Html,{lang:"en",children:[(0,l.jsx)(s.Head,{}),(0,l.jsxs)("body",{children:[(0,l.jsx)(s.Main,{}),(0,l.jsx)(s.NextScript,{})]})]})}},2880:()=>{},9455:(e,a)=>{"use strict";Object.defineProperty(a,"A",{enumerable:!0,get:function(){return t}});var t=function(e){return e.PAGES="PAGES",e.PAGES_API="PAGES_API",e.APP_PAGE="APP_PAGE",e.APP_ROUTE="APP_ROUTE",e.IMAGE="IMAGE",e}({})},361:e=>{"use strict";e.exports=require("next/dist/compiled/next-server/pages.runtime.prod.js")},2015:e=>{"use strict";e.exports=require("react")},8732:e=>{"use strict";e.exports=require("react/jsx-runtime")},3873:e=>{"use strict";e.exports=require("path")}};var a=require("../webpack-runtime.js");a.C(e);var t=e=>a(a.s=e),l=a.X(0,[883],()=>t(6069));module.exports=l})();
+"use strict";
+(() => {
+var exports = {};
+exports.id = 203;
+exports.ids = [203];
+exports.modules = {
+
+/***/ 6742:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  config: () => (/* binding */ config),
+  "default": () => (/* binding */ next_route_loaderkind_PAGES_page_2Fgame_preferredRegion_absolutePagePath_private_next_pages_2Fgame_tsx_absoluteAppPath_private_next_pages_2F_app_tsx_absoluteDocumentPath_private_next_pages_2F_document_tsx_middlewareConfigBase64_e30_3D_),
+  getServerSideProps: () => (/* binding */ next_route_loaderkind_PAGES_page_2Fgame_preferredRegion_absolutePagePath_private_next_pages_2Fgame_tsx_absoluteAppPath_private_next_pages_2F_app_tsx_absoluteDocumentPath_private_next_pages_2F_document_tsx_middlewareConfigBase64_e30_3D_getServerSideProps),
+  getStaticPaths: () => (/* binding */ getStaticPaths),
+  getStaticProps: () => (/* binding */ getStaticProps),
+  reportWebVitals: () => (/* binding */ reportWebVitals),
+  routeModule: () => (/* binding */ routeModule),
+  unstable_getServerProps: () => (/* binding */ unstable_getServerProps),
+  unstable_getServerSideProps: () => (/* binding */ unstable_getServerSideProps),
+  unstable_getStaticParams: () => (/* binding */ unstable_getStaticParams),
+  unstable_getStaticPaths: () => (/* binding */ unstable_getStaticPaths),
+  unstable_getStaticProps: () => (/* binding */ unstable_getStaticProps)
+});
+
+// NAMESPACE OBJECT: ./pages/game.tsx
+var pages_game_namespaceObject = {};
+__webpack_require__.r(pages_game_namespaceObject);
+__webpack_require__.d(pages_game_namespaceObject, {
+  "default": () => (GamePage),
+  getServerSideProps: () => (getServerSideProps)
+});
+
+// EXTERNAL MODULE: ./node_modules/next/dist/server/future/route-modules/pages/module.js
+var pages_module = __webpack_require__(3185);
+// EXTERNAL MODULE: ./node_modules/next/dist/server/future/route-kind.js
+var route_kind = __webpack_require__(5244);
+// EXTERNAL MODULE: ./node_modules/next/dist/build/webpack/loaders/next-route-loader/helpers.js
+var helpers = __webpack_require__(7182);
+// EXTERNAL MODULE: ./pages/_document.tsx
+var _document = __webpack_require__(2699);
+// EXTERNAL MODULE: ./pages/_app.tsx
+var _app = __webpack_require__(3533);
+// EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
+var jsx_runtime = __webpack_require__(5893);
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__(6689);
+// EXTERNAL MODULE: ./node_modules/lucide-react/dist/esm/icons/play.js
+var play = __webpack_require__(9482);
+// EXTERNAL MODULE: ./node_modules/lucide-react/dist/esm/icons/users.js
+var users = __webpack_require__(9525);
+// EXTERNAL MODULE: ./node_modules/lucide-react/dist/esm/icons/settings.js
+var settings = __webpack_require__(1408);
+// EXTERNAL MODULE: ./node_modules/lucide-react/dist/esm/icons/bar-chart-2.js
+var bar_chart_2 = __webpack_require__(66);
+// EXTERNAL MODULE: ./node_modules/lucide-react/dist/esm/icons/eye.js
+var eye = __webpack_require__(4464);
+// EXTERNAL MODULE: ./node_modules/lucide-react/dist/esm/icons/circle-check.js
+var circle_check = __webpack_require__(5594);
+;// CONCATENATED MODULE: ./lib/game/game.ts
+// This file implements the core logic for "The Game".
+const DECK_SIZE = 98; // Cards from 2 to 99
+/**
+ * Determines the hand size based on the number of players, following official rules.
+ * @param numberOfPlayers - The number of players in the game.
+ * @returns The number of cards each player should have.
+ */ function getHandSize(numberOfPlayers) {
+    if (numberOfPlayers === 1) return 8;
+    if (numberOfPlayers === 2) return 7;
+    if (numberOfPlayers >= 3 && numberOfPlayers <= 5) return 6;
+    throw new Error("Invalid number of players. Must be between 1 and 5.");
+}
+/**
+ * Creates and shuffles a new deck of cards.
+ * @returns A shuffled array of cards.
+ */ function createShuffledDeck() {
+    const deck = Array.from({
+        length: DECK_SIZE
+    }, (_, i)=>i + 2);
+    // Fisher-Yates shuffle
+    for(let i = deck.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [
+            deck[j],
+            deck[i]
+        ];
+    }
+    return deck;
+}
+/**
+ * Creates a new game state for a given number of players.
+ * @param numberOfPlayers - The number of players.
+ * @returns A new GameState object.
+ */ function createGame(numberOfPlayers = 1) {
+    const deck = createShuffledDeck();
+    const handSize = getHandSize(numberOfPlayers);
+    const hands = [];
+    for(let i = 0; i < numberOfPlayers; i++){
+        const hand = deck.splice(0, handSize);
+        hand.sort((a, b)=>a - b);
+        hands.push(hand);
+    }
+    const piles = [
+        {
+            id: 1,
+            direction: "ascending",
+            value: 1
+        },
+        {
+            id: 2,
+            direction: "ascending",
+            value: 1
+        },
+        {
+            id: 3,
+            direction: "descending",
+            value: 100
+        },
+        {
+            id: 4,
+            direction: "descending",
+            value: 100
+        }
+    ];
+    return {
+        deck,
+        piles,
+        hands,
+        currentPlayer: 0,
+        cardsPlayed: 0
+    };
+}
+/**
+ * Checks if a move is valid according to the game rules.
+ * @param pile - The pile to play on.
+ * @param card - The card to play.
+ * @returns True if the move is valid, false otherwise.
+ */ function isMoveValid(pile, card) {
+    if (pile.direction === "ascending") {
+        // Ascending pile: card must be greater, or it's a 10-jump
+        return card > pile.value || card === pile.value - 10;
+    } else {
+        // Descending pile: card must be smaller, or it's a 10-jump
+        return card < pile.value || card === pile.value + 10;
+    }
+}
+/**
+ * Returns a list of all possible moves for the current player.
+ * @param gameState - The current state of the game.
+ * @returns An array of valid moves.
+ */ function getValidMoves(gameState) {
+    const validMoves = [];
+    const currentPlayerHand = gameState.hands[gameState.currentPlayer];
+    if (!currentPlayerHand) return [];
+    for (const card of currentPlayerHand){
+        for (const pile of gameState.piles){
+            if (isMoveValid(pile, card)) {
+                validMoves.push({
+                    card,
+                    pileId: pile.id
+                });
+            }
+        }
+    }
+    return validMoves;
+}
+/**
+ * Applies a series of moves to the game state for the current player.
+ * @param gameState - The current game state.
+ * @param moves - The moves to apply.
+ * @returns The new game state.
+ */ function applyMoves(gameState, moves) {
+    const newGameState = JSON.parse(JSON.stringify(gameState));
+    const currentPlayerHand = newGameState.hands[newGameState.currentPlayer];
+    for (const move of moves){
+        const pile = newGameState.piles.find((p)=>p.id === move.pileId);
+        if (pile) {
+            pile.value = move.card;
+            const cardIndex = currentPlayerHand.indexOf(move.card);
+            if (cardIndex > -1) {
+                currentPlayerHand.splice(cardIndex, 1);
+            }
+        }
+    }
+    newGameState.cardsPlayed += moves.length;
+    return newGameState;
+}
+/**
+ * Draws new cards from the deck to replenish the current player's hand.
+ * @param gameState - The current game state.
+ * @returns The new game state with a replenished hand.
+ */ function drawCards(gameState) {
+    const newGameState = JSON.parse(JSON.stringify(gameState));
+    const handSize = getHandSize(newGameState.hands.length);
+    const currentPlayerHand = newGameState.hands[newGameState.currentPlayer];
+    const cardsToDraw = Math.min(handSize - currentPlayerHand.length, newGameState.deck.length);
+    const newCards = newGameState.deck.splice(0, cardsToDraw);
+    currentPlayerHand.push(...newCards);
+    currentPlayerHand.sort((a, b)=>a - b);
+    return newGameState;
+}
+/**
+ * Advances the turn to the next player.
+ * @param gameState The current game state.
+ * @returns The new game state with the updated player turn.
+ */ function advanceTurn(gameState) {
+    const newGameState = JSON.parse(JSON.stringify(gameState));
+    newGameState.currentPlayer = (newGameState.currentPlayer + 1) % newGameState.hands.length;
+    return newGameState;
+}
+
+;// CONCATENATED MODULE: ./lib/game/strategies.ts
+// This file defines the AI strategies for playing "The Game".
+
+/**
+ * A rule-based strategy: Play the minimum required cards (prioritizing 10-jumps and closest cards),
+ * then only play more if the card is a direct follower (±1), a 10-jump, or clearly improves the pile.
+ * Stop otherwise.
+ */ const ruleBasedStrategy = (gameState, playerIndex, params = {})=>{
+    const { playExtraTendency = 0.5, maxAllowedJump = 99, pileHealthCaution = 0.5 } = params;
+    const hand = [
+        ...gameState.hands[playerIndex]
+    ];
+    if (hand.length === 0) return [];
+    const minRequired = gameState.deck.length > 0 ? 2 : 1;
+    const moves = [];
+    let piles = [
+        ...gameState.piles.map((p)=>({
+                ...p
+            }))
+    ];
+    let handCopy = [
+        ...hand
+    ];
+    // Helper to get valid moves for the current hand and piles
+    function getMoves(currentHand, currentPiles) {
+        const tempState = {
+            ...gameState,
+            hands: [
+                ...gameState.hands.slice(0, playerIndex),
+                currentHand,
+                ...gameState.hands.slice(playerIndex + 1)
+            ],
+            piles: currentPiles,
+            currentPlayer: playerIndex
+        };
+        return getValidMoves(tempState);
+    }
+    // Helper to filter out moves that target piles booked by other players
+    function filterMovesAvoidingBookedByOthers(moves) {
+        return moves.filter((m)=>{
+            const pile = piles.find((p)=>p.id === m.pileId);
+            return pile.bookedBy === undefined || pile.bookedBy === playerIndex;
+        });
+    }
+    // 1. Play the minimum required cards (prioritize 10-jumps, then closest)
+    for(let i = 0; i < minRequired; i++){
+        let validMoves = getMoves(handCopy, piles);
+        let safeMoves = filterMovesAvoidingBookedByOthers(validMoves);
+        // If there are safe moves, use them; otherwise, fallback to all valid moves
+        validMoves = safeMoves.length > 0 ? safeMoves : validMoves;
+        if (validMoves.length === 0) break;
+        // Prefer 10-jump
+        let move = validMoves.find((m)=>{
+            const pile = piles.find((p)=>p.id === m.pileId);
+            return Math.abs(m.card - pile.value) === 10;
+        });
+        // Otherwise, play the closest card
+        if (!move) {
+            let minDiff = Infinity;
+            for (const m of validMoves){
+                const pile = piles.find((p)=>p.id === m.pileId);
+                const diff = Math.abs(m.card - pile.value);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    move = m;
+                }
+            }
+        }
+        if (!move) break;
+        moves.push(move);
+        // Update hand and piles
+        handCopy = handCopy.filter((c)=>c !== move.card);
+        piles = piles.map((p)=>p.id === move.pileId ? {
+                ...p,
+                value: move.card
+            } : p);
+    }
+    // 2. Only play more if allowed by parameters
+    while(true){
+        let validMoves = getMoves(handCopy, piles);
+        let safeMoves = filterMovesAvoidingBookedByOthers(validMoves);
+        validMoves = safeMoves.length > 0 ? safeMoves : validMoves;
+        if (validMoves.length === 0) break;
+        // Find a move that is a direct follower, a 10-jump, or within maxAllowedJump
+        let move;
+        for (const m of validMoves){
+            const pile = piles.find((p)=>p.id === m.pileId);
+            const diff = m.card - pile.value;
+            const absDiff = Math.abs(diff);
+            // Always allow direct follower or 10-jump
+            if (absDiff === 1 || absDiff === 10) {
+                move = m;
+                break;
+            }
+            // Allow bigger jumps if within maxAllowedJump and not too risky
+            if (absDiff <= maxAllowedJump && (pileHealthCaution < 0.5 || (pile.direction === "ascending" ? m.card < 90 : m.card > 10))) {
+                move = m;
+                break;
+            }
+        }
+        // Decide probabilistically whether to play extra
+        if (!move || Math.random() > playExtraTendency) break;
+        moves.push(move);
+        handCopy = handCopy.filter((c)=>c !== move.card);
+        piles = piles.map((p)=>p.id === move.pileId ? {
+                ...p,
+                value: move.card
+            } : p);
+    }
+    return moves;
+};
+/**
+ * updateBooking method for ruleBasedStrategy.
+ * Decides whether to book a pile based on bookingFrequency parameter.
+ */ ruleBasedStrategy.updateBooking = function(gameState, playerIndex, params = {}) {
+    const { bookingFrequency = 0 } = params;
+    if (bookingFrequency === 0) return null;
+    const hand = gameState.hands[playerIndex];
+    // Find all possible moves
+    const moves = getValidMoves({
+        ...gameState,
+        currentPlayer: playerIndex
+    });
+    // Helper to get pile for a move
+    const getPile = (move)=>gameState.piles.find((p)=>p.id === move.pileId);
+    // 1. Book if a 10-jump is available
+    if (bookingFrequency >= 1) {
+        const tenJumpMove = moves.find((m)=>{
+            const pile = getPile(m);
+            return Math.abs(m.card - pile.value) === 10 && (pile.bookedBy === undefined || pile.bookedBy === playerIndex);
+        });
+        if (tenJumpMove) {
+            return {
+                pileId: tenJumpMove.pileId,
+                action: "book"
+            };
+        }
+    }
+    // 2. Book if a ±1 move is available (if bookingFrequency >= 2)
+    if (bookingFrequency >= 2) {
+        const plusMinusOneMove = moves.find((m)=>{
+            const pile = getPile(m);
+            return Math.abs(m.card - pile.value) === 1 && (pile.bookedBy === undefined || pile.bookedBy === playerIndex);
+        });
+        if (plusMinusOneMove) {
+            return {
+                pileId: plusMinusOneMove.pileId,
+                action: "book"
+            };
+        }
+    }
+    // Otherwise, release any pile currently booked by this player
+    const bookedPile = gameState.piles.find((p)=>p.bookedBy === playerIndex);
+    if (bookedPile) {
+        return {
+            pileId: bookedPile.id,
+            action: "release"
+        };
+    }
+    return null;
+};
+
+;// CONCATENATED MODULE: ./lib/game/simulate.ts
+// This file runs the game simulation with a given strategy.
+
+
+const MIN_CARDS_TO_PLAY_PER_TURN = 2;
+/**
+ * Runs a single game from start to finish with a given strategy (or array of strategies) for all players.
+ * Supports booking logic: after each turn, calls updateBooking if present.
+ * @param strategies - A single strategy or an array of strategies (one per player).
+ * @param numberOfPlayers - The number of players in the game.
+ * @param logger - An optional function to log game events for debugging.
+ * @returns The final number of cards left in the deck and all hands.
+ */ function runSingleGame(strategies, numberOfPlayers, logger) {
+    let gameState = createGame(numberOfPlayers);
+    logger?.(`--- Starting a new game with ${numberOfPlayers} players ---\n`);
+    // Normalize strategies to an array
+    const strategyList = Array.isArray(strategies) ? strategies : Array(numberOfPlayers).fill(strategies);
+    while(true){
+        const currentPlayer = gameState.currentPlayer;
+        const strategy = strategyList[currentPlayer];
+        logger?.(`\n--- Player ${currentPlayer + 1}'s Turn ---`);
+        logger?.(`Piles: ${JSON.stringify(gameState.piles.map((p)=>p.value))}`);
+        logger?.(`Hand:  ${JSON.stringify(gameState.hands[currentPlayer])}`);
+        // Determine the minimum number of cards to play
+        const minRequired = gameState.deck.length > 0 ? MIN_CARDS_TO_PLAY_PER_TURN : 1;
+        let playedCount = 0;
+        let movesToPlay = [];
+        let tempGameState = {
+            ...gameState
+        };
+        // Try to play up to minRequired cards
+        while(playedCount < minRequired){
+            const moves = strategy(tempGameState, currentPlayer);
+            if (moves.length === 0) break;
+            movesToPlay.push(...moves);
+            tempGameState = applyMoves(tempGameState, moves);
+            playedCount += moves.length;
+        }
+        if (playedCount < minRequired) {
+            logger?.(`Player ${currentPlayer + 1} cannot play the required ${minRequired} cards. GAME OVER.`);
+            break;
+        }
+        // Apply all moves to the real game state
+        gameState = applyMoves(gameState, movesToPlay);
+        if (movesToPlay.length > 0) {
+            logger?.(`Plays: ${JSON.stringify(movesToPlay)}`);
+            logger?.(`Piles after play: ${JSON.stringify(gameState.piles.map((p)=>p.value))}`);
+        } else {
+            logger?.("Plays: No moves were made.");
+        }
+        const handBeforeDraw = [
+            ...gameState.hands[currentPlayer]
+        ];
+        gameState = drawCards(gameState);
+        const cardsDrawn = gameState.hands[currentPlayer].filter((c)=>!handBeforeDraw.includes(c));
+        if (cardsDrawn.length > 0) {
+            logger?.(`Draws: ${JSON.stringify(cardsDrawn)}`);
+            logger?.(`New Hand: ${JSON.stringify(gameState.hands[currentPlayer])}`);
+        }
+        // --- Booking logic: allow player to book or release a pile ---
+        if (typeof strategy.updateBooking === "function") {
+            const bookingAction = strategy.updateBooking(gameState, currentPlayer);
+            if (bookingAction) {
+                const pile = gameState.piles.find((p)=>p.id === bookingAction.pileId);
+                if (pile) {
+                    if (bookingAction.action === "book") {
+                        pile.bookedBy = currentPlayer;
+                        logger?.(`Player ${currentPlayer + 1} books pile ${pile.id}`);
+                    } else if (bookingAction.action === "release" && pile.bookedBy === currentPlayer) {
+                        pile.bookedBy = undefined;
+                        logger?.(`Player ${currentPlayer + 1} releases pile ${pile.id}`);
+                    }
+                }
+            }
+        }
+        // Win condition: all cards played
+        const totalCardsInHands = gameState.hands.reduce((sum, hand)=>sum + hand.length, 0);
+        if (totalCardsInHands === 0 && gameState.deck.length === 0) {
+            logger?.("--- GAME WON: All cards have been played! ---");
+            break;
+        }
+        gameState = advanceTurn(gameState);
+    }
+    const cardsLeft = 98 - gameState.cardsPlayed;
+    logger?.(`\n--- Game Finished ---`);
+    logger?.(`Cards left: ${cardsLeft}`);
+    return cardsLeft;
+}
+/**
+ * Runs multiple simulations for a given strategy and calculates statistics.
+ * @param strategy - The strategy to test.
+ * @param numberOfGames - The number of games to simulate.
+ * @param numberOfPlayers - The number of players in each game.
+ * @returns An object with the simulation results.
+ */ function runSimulation(strategy, numberOfGames, numberOfPlayers) {
+    let totalCardsLeft = 0;
+    let wins = 0;
+    for(let i = 0; i < numberOfGames; i++){
+        const cardsLeft = runSingleGame(strategy, numberOfPlayers);
+        if (cardsLeft === 0) {
+            wins++;
+        }
+        totalCardsLeft += cardsLeft;
+    }
+    return {
+        numberOfGames,
+        numberOfPlayers,
+        wins,
+        averageCardsLeft: totalCardsLeft / numberOfGames
+    };
+}
+/**
+ * Runs a grid search over parameter combinations to find the best performing strategy settings.
+ * @param paramRanges - An object with arrays of possible values for each parameter.
+ * @param numberOfGames - Number of games per parameter set.
+ * @param numberOfPlayers - Number of players.
+ * @param maxIterations - Maximum number of parameter combinations to try.
+ * @param logger - Optional logger for progress.
+ * @returns Array of results sorted by win rate and average cards left.
+ */ function runParameterSearch(paramRanges, numberOfGames, numberOfPlayers, maxIterations = 100, logger) {
+    // Generate all parameter combinations (cartesian product)
+    const combos = [];
+    for (const playExtraTendency of paramRanges.playExtraTendency){
+        for (const maxAllowedJump of paramRanges.maxAllowedJump){
+            for (const pileHealthCaution of paramRanges.pileHealthCaution){
+                for (const bookingFrequency of paramRanges.bookingFrequency){
+                    combos.push({
+                        playExtraTendency,
+                        maxAllowedJump,
+                        pileHealthCaution,
+                        bookingFrequency
+                    });
+                }
+            }
+        }
+    }
+    // Limit to maxIterations
+    const limitedCombos = combos.slice(0, maxIterations);
+    const results = [];
+    let iter = 0;
+    for (const params of limitedCombos){
+        iter++;
+        logger?.(`Testing combo ${iter}/${limitedCombos.length}: ${JSON.stringify(params)}`);
+        const simResult = runSimulation((gs, pi)=>ruleBasedStrategy(gs, pi, params), numberOfGames, numberOfPlayers);
+        results.push({
+            ...params,
+            winRate: simResult.wins / simResult.numberOfGames,
+            avgCardsLeft: simResult.averageCardsLeft
+        });
+    }
+    // Sort by win rate desc, then avgCardsLeft asc
+    results.sort((a, b)=>b.winRate - a.winRate || a.avgCardsLeft - b.avgCardsLeft);
+    return results;
+}
+
+;// CONCATENATED MODULE: ./pages/game.tsx
+// This page provides a web interface for running and analyzing simulations of "The Game" with tunable strategy parameters.
+
+
+
+
+
+
+
+
+
+
+function GamePage() {
+    const [numPlayers, setNumPlayers] = (0,external_react_.useState)(2);
+    const [playExtraTendency, setPlayExtraTendency] = (0,external_react_.useState)(0.5);
+    const [maxAllowedJump, setMaxAllowedJump] = (0,external_react_.useState)(99);
+    const [pileHealthCaution, setPileHealthCaution] = (0,external_react_.useState)(0.5);
+    const [mode, setMode] = (0,external_react_.useState)("single");
+    const [numGames, setNumGames] = (0,external_react_.useState)(1000);
+    const [maxIterations, setMaxIterations] = (0,external_react_.useState)(50);
+    const [results, setResults] = (0,external_react_.useState)(null);
+    const [loading, setLoading] = (0,external_react_.useState)(false);
+    const [bookingFrequency, setBookingFrequency] = (0,external_react_.useState)(0);
+    const [searchLog, setSearchLog] = (0,external_react_.useState)([]);
+    // Parameter search ranges
+    const [playExtraTendencyRange, setPlayExtraTendencyRange] = (0,external_react_.useState)([
+        0,
+        0.5,
+        1
+    ]);
+    const [maxAllowedJumpRange, setMaxAllowedJumpRange] = (0,external_react_.useState)([
+        1,
+        10,
+        99
+    ]);
+    const [pileHealthCautionRange, setPileHealthCautionRange] = (0,external_react_.useState)([
+        0,
+        0.5,
+        1
+    ]);
+    const [bookingFrequencyRange, setBookingFrequencyRange] = (0,external_react_.useState)([
+        0,
+        1,
+        2
+    ]);
+    const params = {
+        playExtraTendency,
+        maxAllowedJump,
+        pileHealthCaution,
+        bookingFrequency
+    };
+    const handleRun = async ()=>{
+        setLoading(true);
+        setResults(null);
+        if (mode === "single") {
+            // Run a single game with verbose logging
+            const log = [];
+            runSingleGame((gs, pi)=>ruleBasedStrategy(gs, pi, params), numPlayers, (msg)=>log.push(msg));
+            setResults({
+                mode,
+                numPlayers,
+                playExtraTendency,
+                maxAllowedJump,
+                pileHealthCaution,
+                log
+            });
+        } else if (mode === "multi") {
+            // Run multiple simulations
+            const simResults = runSimulation((gs, pi)=>ruleBasedStrategy(gs, pi, params), numGames, numPlayers);
+            setResults({
+                mode,
+                numPlayers,
+                playExtraTendency,
+                maxAllowedJump,
+                pileHealthCaution,
+                numGames,
+                winRate: simResults.wins / simResults.numberOfGames,
+                avgCardsLeft: simResults.averageCardsLeft
+            });
+        } else if (mode === "search") {
+            // Parameter search mode
+            const log = [];
+            setSearchLog([]);
+            const results = runParameterSearch({
+                playExtraTendency: playExtraTendencyRange,
+                maxAllowedJump: maxAllowedJumpRange,
+                pileHealthCaution: pileHealthCautionRange,
+                bookingFrequency: bookingFrequencyRange
+            }, numGames, numPlayers, maxIterations, (msg)=>{
+                log.push(msg);
+                setSearchLog([
+                    ...log
+                ]);
+            });
+            setResults({
+                mode,
+                results
+            });
+        }
+        setLoading(false);
+    };
+    return /*#__PURE__*/ jsx_runtime.jsx("div", {
+        className: "min-h-screen bg-gray-50 py-8 px-4 flex flex-col items-center",
+        children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+            className: "w-full max-w-2xl bg-white rounded-xl shadow-lg p-8",
+            children: [
+                /*#__PURE__*/ (0,jsx_runtime.jsxs)("h1", {
+                    className: "text-3xl font-bold mb-6 flex items-center gap-2",
+                    children: [
+                        /*#__PURE__*/ jsx_runtime.jsx(bar_chart_2/* default */.Z, {
+                            className: "w-8 h-8 text-blue-500"
+                        }),
+                        "The Game — Simulation Lab"
+                    ]
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsxs)("form", {
+                    className: "space-y-6",
+                    onSubmit: (e)=>{
+                        e.preventDefault();
+                        handleRun();
+                    },
+                    children: [
+                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                            className: "flex flex-col gap-2",
+                            children: [
+                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("label", {
+                                    className: "font-semibold flex items-center gap-2",
+                                    children: [
+                                        /*#__PURE__*/ jsx_runtime.jsx(users/* default */.Z, {
+                                            className: "w-4 h-4"
+                                        }),
+                                        " Number of players"
+                                    ]
+                                }),
+                                /*#__PURE__*/ jsx_runtime.jsx("input", {
+                                    type: "number",
+                                    min: 1,
+                                    max: 5,
+                                    value: numPlayers,
+                                    onChange: (e)=>setNumPlayers(Number(e.target.value)),
+                                    className: "input input-bordered w-full max-w-xs"
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                            className: "flex flex-col gap-2",
+                            children: [
+                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("label", {
+                                    className: "font-semibold flex items-center gap-2",
+                                    children: [
+                                        /*#__PURE__*/ jsx_runtime.jsx(settings/* default */.Z, {
+                                            className: "w-4 h-4"
+                                        }),
+                                        " Tendency to play extra cards"
+                                    ]
+                                }),
+                                /*#__PURE__*/ jsx_runtime.jsx("input", {
+                                    type: "range",
+                                    min: 0,
+                                    max: 1,
+                                    step: 0.01,
+                                    value: playExtraTendency,
+                                    onChange: (e)=>setPlayExtraTendency(Number(e.target.value))
+                                }),
+                                /*#__PURE__*/ jsx_runtime.jsx("span", {
+                                    className: "text-xs text-gray-500",
+                                    children: playExtraTendency
+                                }),
+                                /*#__PURE__*/ jsx_runtime.jsx("span", {
+                                    className: "text-xs text-gray-400",
+                                    children: "0 = never play extra cards, 1 = always play extra cards if allowed. Controls how likely the player is to play more than the minimum required cards."
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                            className: "flex flex-col gap-2",
+                            children: [
+                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("label", {
+                                    className: "font-semibold flex items-center gap-2",
+                                    children: [
+                                        /*#__PURE__*/ jsx_runtime.jsx(settings/* default */.Z, {
+                                            className: "w-4 h-4"
+                                        }),
+                                        " Max allowed jump for extra cards"
+                                    ]
+                                }),
+                                /*#__PURE__*/ jsx_runtime.jsx("input", {
+                                    type: "range",
+                                    min: 1,
+                                    max: 99,
+                                    step: 1,
+                                    value: maxAllowedJump,
+                                    onChange: (e)=>setMaxAllowedJump(Number(e.target.value))
+                                }),
+                                /*#__PURE__*/ jsx_runtime.jsx("span", {
+                                    className: "text-xs text-gray-500",
+                                    children: maxAllowedJump
+                                }),
+                                /*#__PURE__*/ jsx_runtime.jsx("span", {
+                                    className: "text-xs text-gray-400",
+                                    children: "1 = only direct followers/10-jumps, 99 = allow any jump. Controls how big a jump you're willing to make for extra cards (riskiness)."
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                            className: "flex flex-col gap-2",
+                            children: [
+                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("label", {
+                                    className: "font-semibold flex items-center gap-2",
+                                    children: [
+                                        /*#__PURE__*/ jsx_runtime.jsx(settings/* default */.Z, {
+                                            className: "w-4 h-4"
+                                        }),
+                                        " Pile health caution"
+                                    ]
+                                }),
+                                /*#__PURE__*/ jsx_runtime.jsx("input", {
+                                    type: "range",
+                                    min: 0,
+                                    max: 1,
+                                    step: 0.01,
+                                    value: pileHealthCaution,
+                                    onChange: (e)=>setPileHealthCaution(Number(e.target.value))
+                                }),
+                                /*#__PURE__*/ jsx_runtime.jsx("span", {
+                                    className: "text-xs text-gray-500",
+                                    children: pileHealthCaution
+                                }),
+                                /*#__PURE__*/ jsx_runtime.jsx("span", {
+                                    className: "text-xs text-gray-400",
+                                    children: '0 = don\'t care about pile health, 1 = never "waste" a pile. Controls how cautious the player is about leaving piles in a good state for the future.'
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                            className: "flex flex-col gap-2",
+                            children: [
+                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("label", {
+                                    className: "font-semibold flex items-center gap-2",
+                                    children: [
+                                        /*#__PURE__*/ jsx_runtime.jsx(settings/* default */.Z, {
+                                            className: "w-4 h-4"
+                                        }),
+                                        " Pile booking frequency"
+                                    ]
+                                }),
+                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("select", {
+                                    value: bookingFrequency,
+                                    onChange: (e)=>setBookingFrequency(Number(e.target.value)),
+                                    className: "input input-bordered w-full max-w-xs",
+                                    children: [
+                                        /*#__PURE__*/ jsx_runtime.jsx("option", {
+                                            value: 0,
+                                            children: "Never book a pile"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("option", {
+                                            value: 1,
+                                            children: "Book if a 10-jump is available"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("option", {
+                                            value: 2,
+                                            children: "Book if a 10-jump or \xb11 is available"
+                                        })
+                                    ]
+                                }),
+                                /*#__PURE__*/ jsx_runtime.jsx("span", {
+                                    className: "text-xs text-gray-400",
+                                    children: 'Controls how often the player will "book" a pile to signal intent to other players.'
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                            className: "flex flex-col gap-2",
+                            children: [
+                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("label", {
+                                    className: "font-semibold flex items-center gap-2",
+                                    children: [
+                                        /*#__PURE__*/ jsx_runtime.jsx(eye/* default */.Z, {
+                                            className: "w-4 h-4"
+                                        }),
+                                        " Simulation mode"
+                                    ]
+                                }),
+                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                    className: "flex gap-4",
+                                    children: [
+                                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("button", {
+                                            type: "button",
+                                            className: `flex items-center gap-2 px-4 py-2 rounded-lg border transition-all ${mode === "single" ? "bg-blue-100 border-blue-500 text-blue-700 shadow" : "bg-white border-gray-300 text-gray-700"} hover:border-blue-400`,
+                                            onClick: ()=>setMode("single"),
+                                            children: [
+                                                mode === "single" && /*#__PURE__*/ jsx_runtime.jsx(circle_check/* default */.Z, {
+                                                    className: "w-4 h-4 text-blue-500"
+                                                }),
+                                                "Single Game (Verbose)"
+                                            ]
+                                        }),
+                                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("button", {
+                                            type: "button",
+                                            className: `flex items-center gap-2 px-4 py-2 rounded-lg border transition-all ${mode === "multi" ? "bg-blue-100 border-blue-500 text-blue-700 shadow" : "bg-white border-gray-300 text-gray-700"} hover:border-blue-400`,
+                                            onClick: ()=>setMode("multi"),
+                                            children: [
+                                                mode === "multi" && /*#__PURE__*/ jsx_runtime.jsx(circle_check/* default */.Z, {
+                                                    className: "w-4 h-4 text-blue-500"
+                                                }),
+                                                "Multiple Simulations"
+                                            ]
+                                        }),
+                                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("button", {
+                                            type: "button",
+                                            className: `flex items-center gap-2 px-4 py-2 rounded-lg border transition-all ${mode === "search" ? "bg-blue-100 border-blue-500 text-blue-700 shadow" : "bg-white border-gray-300 text-gray-700"} hover:border-blue-400`,
+                                            onClick: ()=>setMode("search"),
+                                            children: [
+                                                mode === "search" && /*#__PURE__*/ jsx_runtime.jsx(circle_check/* default */.Z, {
+                                                    className: "w-4 h-4 text-blue-500"
+                                                }),
+                                                "Parameter Search (Find Optimal)"
+                                            ]
+                                        })
+                                    ]
+                                }),
+                                mode === "multi" && /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                    className: "flex flex-col gap-2 mt-2",
+                                    children: [
+                                        /*#__PURE__*/ jsx_runtime.jsx("label", {
+                                            className: "text-sm",
+                                            children: "Number of games"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("input", {
+                                            type: "number",
+                                            min: 1,
+                                            max: 10000,
+                                            value: numGames,
+                                            onChange: (e)=>setNumGames(Number(e.target.value)),
+                                            className: "input input-bordered w-full max-w-xs"
+                                        })
+                                    ]
+                                }),
+                                mode === "search" && /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                    className: "flex flex-col gap-2 mt-2",
+                                    children: [
+                                        /*#__PURE__*/ jsx_runtime.jsx("label", {
+                                            className: "text-sm",
+                                            children: "Number of games per combo"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("input", {
+                                            type: "number",
+                                            min: 1,
+                                            max: 10000,
+                                            value: numGames,
+                                            onChange: (e)=>setNumGames(Number(e.target.value)),
+                                            className: "input input-bordered w-full max-w-xs"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("label", {
+                                            className: "text-sm",
+                                            children: "Max parameter combinations (iterations)"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("input", {
+                                            type: "number",
+                                            min: 1,
+                                            max: 500,
+                                            value: maxIterations,
+                                            onChange: (e)=>setMaxIterations(Number(e.target.value)),
+                                            className: "input input-bordered w-full max-w-xs"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("label", {
+                                            className: "text-sm",
+                                            children: "playExtraTendency values (comma separated)"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("input", {
+                                            type: "text",
+                                            value: playExtraTendencyRange.join(","),
+                                            onChange: (e)=>setPlayExtraTendencyRange(e.target.value.split(",").map(Number).filter((x)=>!isNaN(x))),
+                                            className: "input input-bordered w-full max-w-xs"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("label", {
+                                            className: "text-sm",
+                                            children: "maxAllowedJump values (comma separated)"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("input", {
+                                            type: "text",
+                                            value: maxAllowedJumpRange.join(","),
+                                            onChange: (e)=>setMaxAllowedJumpRange(e.target.value.split(",").map(Number).filter((x)=>!isNaN(x))),
+                                            className: "input input-bordered w-full max-w-xs"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("label", {
+                                            className: "text-sm",
+                                            children: "pileHealthCaution values (comma separated)"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("input", {
+                                            type: "text",
+                                            value: pileHealthCautionRange.join(","),
+                                            onChange: (e)=>setPileHealthCautionRange(e.target.value.split(",").map(Number).filter((x)=>!isNaN(x))),
+                                            className: "input input-bordered w-full max-w-xs"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("label", {
+                                            className: "text-sm",
+                                            children: "bookingFrequency values (comma separated)"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("input", {
+                                            type: "text",
+                                            value: bookingFrequencyRange.join(","),
+                                            onChange: (e)=>setBookingFrequencyRange(e.target.value.split(",").map(Number).filter((x)=>!isNaN(x))),
+                                            className: "input input-bordered w-full max-w-xs"
+                                        })
+                                    ]
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("button", {
+                            type: "submit",
+                            className: "btn btn-primary w-full flex items-center justify-center gap-2",
+                            disabled: loading,
+                            children: [
+                                /*#__PURE__*/ jsx_runtime.jsx(play/* default */.Z, {
+                                    className: "w-5 h-5"
+                                }),
+                                " ",
+                                loading ? "Running..." : "Run Simulation"
+                            ]
+                        })
+                    ]
+                }),
+                results && /*#__PURE__*/ jsx_runtime.jsx("div", {
+                    className: "mt-8",
+                    children: results.mode === "single" ? /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                        className: "bg-gray-100 rounded-lg p-4 max-h-96 overflow-y-auto",
+                        children: [
+                            /*#__PURE__*/ jsx_runtime.jsx("h2", {
+                                className: "font-bold mb-2",
+                                children: "Game Log"
+                            }),
+                            /*#__PURE__*/ jsx_runtime.jsx("pre", {
+                                className: "text-xs whitespace-pre-wrap",
+                                children: results.log.join("\n")
+                            })
+                        ]
+                    }) : results.mode === "multi" ? /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                        className: "bg-gray-100 rounded-lg p-4",
+                        children: [
+                            /*#__PURE__*/ jsx_runtime.jsx("h2", {
+                                className: "font-bold mb-2",
+                                children: "Simulation Results"
+                            }),
+                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                className: "flex flex-col gap-1 text-sm",
+                                children: [
+                                    /*#__PURE__*/ (0,jsx_runtime.jsxs)("span", {
+                                        children: [
+                                            "Games played: ",
+                                            results.numGames
+                                        ]
+                                    }),
+                                    /*#__PURE__*/ (0,jsx_runtime.jsxs)("span", {
+                                        children: [
+                                            "Players: ",
+                                            results.numPlayers
+                                        ]
+                                    }),
+                                    /*#__PURE__*/ (0,jsx_runtime.jsxs)("span", {
+                                        children: [
+                                            "Win rate: ",
+                                            (results.winRate * 100).toFixed(2),
+                                            "%"
+                                        ]
+                                    }),
+                                    /*#__PURE__*/ (0,jsx_runtime.jsxs)("span", {
+                                        children: [
+                                            "Average cards left: ",
+                                            results.avgCardsLeft
+                                        ]
+                                    }),
+                                    /*#__PURE__*/ (0,jsx_runtime.jsxs)("span", {
+                                        children: [
+                                            "Booking frequency: ",
+                                            bookingFrequency === 0 ? "Never" : bookingFrequency === 1 ? "10-jump only" : "10-jump or \xb11"
+                                        ]
+                                    })
+                                ]
+                            })
+                        ]
+                    }) : /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                        className: "bg-gray-100 rounded-lg p-4",
+                        children: [
+                            /*#__PURE__*/ jsx_runtime.jsx("h2", {
+                                className: "font-bold mb-2",
+                                children: "Parameter Search Results"
+                            }),
+                            /*#__PURE__*/ jsx_runtime.jsx("div", {
+                                className: "max-h-64 overflow-y-auto mb-2",
+                                children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("table", {
+                                    className: "table-auto w-full text-xs",
+                                    children: [
+                                        /*#__PURE__*/ jsx_runtime.jsx("thead", {
+                                            children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("tr", {
+                                                children: [
+                                                    /*#__PURE__*/ jsx_runtime.jsx("th", {
+                                                        children: "playExtraTendency"
+                                                    }),
+                                                    /*#__PURE__*/ jsx_runtime.jsx("th", {
+                                                        children: "maxAllowedJump"
+                                                    }),
+                                                    /*#__PURE__*/ jsx_runtime.jsx("th", {
+                                                        children: "pileHealthCaution"
+                                                    }),
+                                                    /*#__PURE__*/ jsx_runtime.jsx("th", {
+                                                        children: "bookingFrequency"
+                                                    }),
+                                                    /*#__PURE__*/ jsx_runtime.jsx("th", {
+                                                        children: "Win Rate"
+                                                    }),
+                                                    /*#__PURE__*/ jsx_runtime.jsx("th", {
+                                                        children: "Avg Cards Left"
+                                                    })
+                                                ]
+                                            })
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime.jsx("tbody", {
+                                            children: results.results.slice(0, 20).map((r, i)=>/*#__PURE__*/ (0,jsx_runtime.jsxs)("tr", {
+                                                    className: i === 0 ? "font-bold bg-blue-50" : "",
+                                                    children: [
+                                                        /*#__PURE__*/ jsx_runtime.jsx("td", {
+                                                            children: r.playExtraTendency
+                                                        }),
+                                                        /*#__PURE__*/ jsx_runtime.jsx("td", {
+                                                            children: r.maxAllowedJump
+                                                        }),
+                                                        /*#__PURE__*/ jsx_runtime.jsx("td", {
+                                                            children: r.pileHealthCaution
+                                                        }),
+                                                        /*#__PURE__*/ jsx_runtime.jsx("td", {
+                                                            children: r.bookingFrequency
+                                                        }),
+                                                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("td", {
+                                                            children: [
+                                                                (r.winRate * 100).toFixed(2),
+                                                                "%"
+                                                            ]
+                                                        }),
+                                                        /*#__PURE__*/ jsx_runtime.jsx("td", {
+                                                            children: r.avgCardsLeft
+                                                        })
+                                                    ]
+                                                }, i))
+                                        })
+                                    ]
+                                })
+                            }),
+                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                className: "bg-gray-200 rounded p-2 max-h-32 overflow-y-auto text-xs",
+                                children: [
+                                    /*#__PURE__*/ jsx_runtime.jsx("div", {
+                                        children: "Progress log:"
+                                    }),
+                                    /*#__PURE__*/ jsx_runtime.jsx("pre", {
+                                        children: searchLog.join("\n")
+                                    })
+                                ]
+                            })
+                        ]
+                    })
+                })
+            ]
+        })
+    });
+}
+// Force SSR for Netlify/Next.js so /game is always available
+const getServerSideProps = async ()=>{
+    return {
+        props: {}
+    };
+};
+
+;// CONCATENATED MODULE: ./node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js?kind=PAGES&page=%2Fgame&preferredRegion=&absolutePagePath=private-next-pages%2Fgame.tsx&absoluteAppPath=private-next-pages%2F_app.tsx&absoluteDocumentPath=private-next-pages%2F_document.tsx&middlewareConfigBase64=e30%3D!
+// @ts-ignore this need to be imported from next/dist to be external
+
+
+
+// Import the app and document modules.
+// @ts-expect-error - replaced by webpack/turbopack loader
+
+// @ts-expect-error - replaced by webpack/turbopack loader
+
+// Import the userland code.
+// @ts-expect-error - replaced by webpack/turbopack loader
+
+const PagesRouteModule = pages_module.PagesRouteModule;
+// Re-export the component (should be the default export).
+/* harmony default export */ const next_route_loaderkind_PAGES_page_2Fgame_preferredRegion_absolutePagePath_private_next_pages_2Fgame_tsx_absoluteAppPath_private_next_pages_2F_app_tsx_absoluteDocumentPath_private_next_pages_2F_document_tsx_middlewareConfigBase64_e30_3D_ = ((0,helpers/* hoist */.l)(pages_game_namespaceObject, "default"));
+// Re-export methods.
+const getStaticProps = (0,helpers/* hoist */.l)(pages_game_namespaceObject, "getStaticProps");
+const getStaticPaths = (0,helpers/* hoist */.l)(pages_game_namespaceObject, "getStaticPaths");
+const next_route_loaderkind_PAGES_page_2Fgame_preferredRegion_absolutePagePath_private_next_pages_2Fgame_tsx_absoluteAppPath_private_next_pages_2F_app_tsx_absoluteDocumentPath_private_next_pages_2F_document_tsx_middlewareConfigBase64_e30_3D_getServerSideProps = (0,helpers/* hoist */.l)(pages_game_namespaceObject, "getServerSideProps");
+const config = (0,helpers/* hoist */.l)(pages_game_namespaceObject, "config");
+const reportWebVitals = (0,helpers/* hoist */.l)(pages_game_namespaceObject, "reportWebVitals");
+// Re-export legacy methods.
+const unstable_getStaticProps = (0,helpers/* hoist */.l)(pages_game_namespaceObject, "unstable_getStaticProps");
+const unstable_getStaticPaths = (0,helpers/* hoist */.l)(pages_game_namespaceObject, "unstable_getStaticPaths");
+const unstable_getStaticParams = (0,helpers/* hoist */.l)(pages_game_namespaceObject, "unstable_getStaticParams");
+const unstable_getServerProps = (0,helpers/* hoist */.l)(pages_game_namespaceObject, "unstable_getServerProps");
+const unstable_getServerSideProps = (0,helpers/* hoist */.l)(pages_game_namespaceObject, "unstable_getServerSideProps");
+// Create and export the route module that will be consumed.
+const routeModule = new PagesRouteModule({
+    definition: {
+        kind: route_kind/* RouteKind */.x.PAGES,
+        page: "/game",
+        pathname: "/game",
+        // The following aren't used in production.
+        bundlePath: "",
+        filename: ""
+    },
+    components: {
+        App: _app["default"],
+        Document: _document["default"]
+    },
+    userland: pages_game_namespaceObject
+});
+
+//# sourceMappingURL=pages.js.map
+
+/***/ }),
+
+/***/ 3076:
+/***/ ((module) => {
+
+module.exports = require("next/dist/server/future/route-modules/route-module.js");
+
+/***/ }),
+
+/***/ 4140:
+/***/ ((module) => {
+
+module.exports = require("next/dist/server/get-page-files.js");
+
+/***/ }),
+
+/***/ 9716:
+/***/ ((module) => {
+
+module.exports = require("next/dist/server/htmlescape.js");
+
+/***/ }),
+
+/***/ 3100:
+/***/ ((module) => {
+
+module.exports = require("next/dist/server/render.js");
+
+/***/ }),
+
+/***/ 6368:
+/***/ ((module) => {
+
+module.exports = require("next/dist/server/utils.js");
+
+/***/ }),
+
+/***/ 6724:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/constants.js");
+
+/***/ }),
+
+/***/ 8743:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/html-context.js");
+
+/***/ }),
+
+/***/ 8524:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/is-plain-object.js");
+
+/***/ }),
+
+/***/ 6689:
+/***/ ((module) => {
+
+module.exports = require("react");
+
+/***/ })
+
+};
+;
+
+// load runtime
+var __webpack_require__ = require("../webpack-runtime.js");
+__webpack_require__.C(exports);
+var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+var __webpack_exports__ = __webpack_require__.X(0, [769,456,906], () => (__webpack_exec__(6742)));
+module.exports = __webpack_exports__;
+
+})();
