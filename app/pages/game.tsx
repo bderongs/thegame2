@@ -235,4 +235,9 @@ export default function GamePage() {
             </div>
         </div>
     );
-} 
+}
+
+// Force SSR for Netlify/Next.js so /game is always available
+export const getServerSideProps = async () => {
+    return { props: {} };
+}; 
