@@ -1,5 +1,4 @@
 # Netlify configuration for Next.js app in /app directory
 [build]
-  base = "app"
   publish = ".next"
   command = "npm run build"
